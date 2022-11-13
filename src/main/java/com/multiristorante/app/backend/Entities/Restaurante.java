@@ -14,5 +14,5 @@ public class Restaurante {
 	
 	private String nombre;
 	
-	private String descripcion;
+    
 }

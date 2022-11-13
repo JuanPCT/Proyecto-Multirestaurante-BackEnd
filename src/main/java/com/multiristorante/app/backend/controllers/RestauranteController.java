@@ -60,7 +60,6 @@ public class RestauranteController {
 			Restaurante restauranteReturn = restauranteCurrent.get();
 			
 			
-			restauranteReturn.setDescripcion(restaurante.getDescripcion());
 			restauranteReturn.setNombre(restaurante.getNombre());
 			
 			
