@@ -14,6 +14,9 @@ public class Restaurante {
 	
 	private String nombre;
 	
+<<<<<<< HEAD
 	private String descripcion;
+=======
+>>>>>>> 33e9fc3f473c0e534ff5351c640eba47148cf8a6
     
 }
