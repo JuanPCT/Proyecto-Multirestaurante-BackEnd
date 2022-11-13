@@ -8,16 +8,16 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Table(name="restaurante")
+@Table(name="producto")
 @Entity
 @Data
-public class Restaurante {
+public class Producto {
     
     @Id
     private Integer id;
 	
-	private String nombre,direccion,telefono,email,password,url_video;
+	private String nombre;
     private Blob imagen;
-    private boolean estado;
-
+    private int precio;
+    private int Menu_id;
 }
