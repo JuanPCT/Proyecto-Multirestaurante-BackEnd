@@ -2,21 +2,21 @@ package com.multiristorante.app.backend.Entities;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
 @Table(name="factura")
 @Entity
 @Data
+@SequenceGenerator(name = "SQ_CUSTOMER", sequenceName = "SQ_CUSTOMER")
 public class Factura {
     
     @Id
-    private int id;
-
-    private int documento;
-
+    private int id_factura;
+    @ManyToOne
+    @JoinColumn(name = "documento")
+    private Usuario documento;
     private Date fecha;
+
 }

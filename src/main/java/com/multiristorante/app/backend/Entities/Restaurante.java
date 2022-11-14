@@ -15,9 +15,13 @@ public class Restaurante {
     
     @Id
     private Integer id;
-	
-	private String nombre,direccion,telefono,email,password,url_video;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String email;
+    private String password;
     private Blob imagen;
     private boolean estado;
+    private String url_video;
 
 }
