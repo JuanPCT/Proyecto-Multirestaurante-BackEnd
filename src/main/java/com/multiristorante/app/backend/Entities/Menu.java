@@ -1,8 +1,6 @@
 package com.multiristorante.app.backend.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -15,6 +13,7 @@ public class Menu {
     private int Menu_id;
 
     private String tipo;
-
-    private int id_restaurante;
+    @ManyToOne
+    @JoinColumn(name = "id_restaurante")
+    private Restaurante id;
 }
