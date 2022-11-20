@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/administradoresR")
 public class AdminRController {
+
     @Autowired
     AdminRRepository adminRRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<AdminR> getAdminRAll(){
         return adminRRepository.findAll();
     }

@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/menus")
 public class MenuController {
+
     @Autowired
     MenuRepository menuRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Menu> getMenulAll(){
         return menuRepository.findAll();
     }

@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/comentarios")
 public class ComentariosController {
+
     @Autowired
     ComentariosRepository comentariosRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Comentarios> getComentarioslAll(){
         return comentariosRepository.findAll();
     }

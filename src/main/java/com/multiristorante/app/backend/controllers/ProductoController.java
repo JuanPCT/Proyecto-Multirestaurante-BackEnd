@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
+
     @Autowired
     ProductoRepository productoRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Producto> getProductoAll(){
         return productoRepository.findAll();
     }

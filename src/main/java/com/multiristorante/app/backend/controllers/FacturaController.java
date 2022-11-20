@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/facturas")
 public class FacturaController {
+
     @Autowired
     FacturaRepository facturaRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Factura> getFacturaAll(){
         return facturaRepository.findAll();
     }

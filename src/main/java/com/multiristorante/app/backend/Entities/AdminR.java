@@ -19,7 +19,7 @@ public class AdminR {
     @JoinColumn(name = "Rol_id")
     private Rol id_rol;
     @ManyToOne
-    @JoinColumn(name = "id_Restaurante",insertable = false,updatable = false)
+    @JoinColumn(name = "id_Restaurante", insertable = false, updatable = false)
     private Restaurante id;
 
 }

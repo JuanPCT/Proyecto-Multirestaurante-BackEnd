@@ -25,7 +25,7 @@ public class RestauranteController {
     @Autowired
     RestauranteRepository restauranteRepository;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Restaurante> getRestauranteAll(){
         return restauranteRepository.findAll();
     }

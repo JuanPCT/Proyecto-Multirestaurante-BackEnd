@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
+
     @Autowired
     UsuarioRepository usuarioRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Usuario> getUsuarioAll(){
         return usuarioRepository.findAll();
     }

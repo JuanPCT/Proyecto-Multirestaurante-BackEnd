@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/solicitudes")
 public class SolicitudController {
+
     @Autowired
     SolicitudRepository solicitudRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Solicitud> getSolicitudlAll(){
         return solicitudRepository.findAll();
     }

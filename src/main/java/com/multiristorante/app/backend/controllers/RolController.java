@@ -14,7 +14,8 @@ import java.util.Optional;
 public class RolController {
     @Autowired
     RolRepository rolRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Rol> getRollAll(){
         return rolRepository.findAll();
     }

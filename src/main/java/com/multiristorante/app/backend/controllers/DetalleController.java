@@ -13,9 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/detalles")
 public class DetalleController {
+
     @Autowired
     DetalleRepository detalleRepository;
-    @GetMapping
+
+    @GetMapping("/all")
     public List<Detalle> getDetallelAll(){
         return detalleRepository.findAll();
     }
