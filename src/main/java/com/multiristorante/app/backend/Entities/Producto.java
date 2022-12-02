@@ -1,6 +1,5 @@
 package com.multiristorante.app.backend.Entities;
 
-import java.sql.Blob;
 
 import javax.persistence.*;
 
@@ -14,7 +13,7 @@ public class Producto {
     @Id
     private Integer id;
 	private String nombre;
-    private Blob imagen;
+    private String imagen;
     private double precio;
     @ManyToOne
     @JoinColumn(name = "Menu_id")

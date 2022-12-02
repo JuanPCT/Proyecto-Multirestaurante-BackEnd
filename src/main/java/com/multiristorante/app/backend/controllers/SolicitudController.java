@@ -1,11 +1,13 @@
 package com.multiristorante.app.backend.controllers;
 
-import com.multiristorante.app.backend.Entities.Rol;
 import com.multiristorante.app.backend.Entities.Solicitud;
 import com.multiristorante.app.backend.repository.SolicitudRepository;
+import com.multiristorante.app.backend.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,13 @@ public class SolicitudController {
 
     @Autowired
     SolicitudRepository solicitudRepository;
+
+    private final FileService fileService;
+
+    @Autowired
+    public SolicitudController(FileService fileService) {
+        this.fileService = fileService;
+    }
 
     @GetMapping("/all")
     public List<Solicitud> getSolicitudlAll(){
@@ -36,7 +45,9 @@ public class SolicitudController {
     }
 
     @PostMapping
-    public Solicitud postSolicitudes(@RequestBody Solicitud solicitud) {
+    public Solicitud postSolicitudes(Solicitud solicitud,@RequestParam("file") MultipartFile file) throws IOException {
+        solicitud.setImagen(file.getOriginalFilename());
+        fileService.storeFile(file);
         solicitudRepository.save(solicitud);
         return solicitud;
     }
@@ -53,6 +64,10 @@ public class SolicitudController {
 
 
             solicitudReturn.setDescripcion(solicitud.getDescripcion());
+            solicitudReturn.setImagen(solicitud.getImagen());
+            solicitudReturn.setEstado(solicitud.getEstado());
+            solicitudReturn.setFecha(solicitud.getFecha());
+
 
 
             solicitudRepository.save(solicitudReturn);

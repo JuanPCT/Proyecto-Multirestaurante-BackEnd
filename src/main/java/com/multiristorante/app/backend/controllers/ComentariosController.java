@@ -53,6 +53,7 @@ public class ComentariosController {
 
 
             comReturn.setDescripcion(comentarios.getDescripcion());
+            comReturn.setCalificacion(comentarios.getCalificacion());
 
 
             comentariosRepository.save(comReturn);

@@ -53,6 +53,13 @@ public class UsuarioController {
 
 
             usuarioReturn.setNombre(usuario.getNombre());
+            usuarioReturn.setApellido(usuario.getApellido());
+            usuarioReturn.setTelefono(usuario.getTelefono());
+            usuarioReturn.setEmail(usuario.getEmail());
+            usuarioReturn.setPassword(usuario.getPassword());
+            usuarioReturn.setEstado(usuario.getEstado());
+            usuarioReturn.setFecha_nacimiento(usuario.getFecha_nacimiento());
+            usuarioReturn.setFecha_creacion(usuario.getFecha_creacion());
 
 
             usuarioRepository.save(usuarioReturn);

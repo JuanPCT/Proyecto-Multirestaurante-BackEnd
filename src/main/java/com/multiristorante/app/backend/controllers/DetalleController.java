@@ -53,6 +53,7 @@ public class DetalleController {
 
 
             detalleReturn.setCantidad(detalle.getCantidad());
+            detalleReturn.setPrecio(detalle.getPrecio());
 
 
             detalleRepository.save(detalleReturn);

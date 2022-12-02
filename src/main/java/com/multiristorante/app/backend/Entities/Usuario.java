@@ -24,9 +24,13 @@ public class Usuario {
     private String email;
 
     private String password;
+<<<<<<< HEAD
 
     private boolean estado;
 
+=======
+    private Boolean estado;
+>>>>>>> 3d9d87e28868adae449eda7b7cdc7cf3fd3710ef
     private Date fecha_nacimiento;
 
     private Date fecha_creacion;
