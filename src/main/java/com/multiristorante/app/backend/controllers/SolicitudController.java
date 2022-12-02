@@ -37,6 +37,7 @@ public class SolicitudController {
 
     @PostMapping
     public Solicitud postSolicitudes(@RequestBody Solicitud solicitud) {
+
         solicitudRepository.save(solicitud);
         return solicitud;
     }
@@ -53,6 +54,10 @@ public class SolicitudController {
 
 
             solicitudReturn.setDescripcion(solicitud.getDescripcion());
+            solicitudReturn.setImagen(solicitud.getImagen());
+            solicitudReturn.setEstado(solicitud.getEstado());
+            solicitudReturn.setFecha(solicitud.getFecha());
+
 
 
             solicitudRepository.save(solicitudReturn);

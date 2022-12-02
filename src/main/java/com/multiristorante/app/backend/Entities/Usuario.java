@@ -16,7 +16,7 @@ public class Usuario {
     private String telefono;
     private String email;
     private String password;
-    private boolean estado;
+    private Boolean estado;
     private Date fecha_nacimiento;
     private Date fecha_creacion;
     @ManyToOne

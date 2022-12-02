@@ -37,6 +37,7 @@ public class ProductoController {
 
     @PostMapping
     public Producto postProductos(@RequestBody Producto producto) {
+
         productoRepository.save(producto);
         return producto;
     }
@@ -53,6 +54,9 @@ public class ProductoController {
 
 
             productoReturn.setNombre(producto.getNombre());
+            productoReturn.setNombre(producto.getNombre());
+            productoReturn.setPrecio(producto.getPrecio());
+            productoReturn.setImagen(producto.getImagen());
 
 
             productoRepository.save(productoReturn);

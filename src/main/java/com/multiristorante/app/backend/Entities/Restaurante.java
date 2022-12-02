@@ -1,10 +1,7 @@
 package com.multiristorante.app.backend.Entities;
 
-import java.sql.Blob;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -20,8 +17,11 @@ public class Restaurante {
     private String telefono;
     private String email;
     private String password;
-    private Blob imagen;
-    private boolean estado;
+    private String imagen;
+    private Boolean estado;
     private String url_video;
+    @ManyToOne
+    @JoinColumn(name = "id",insertable = false,updatable = false)
+    private Categoria categoria_id;
 
 }

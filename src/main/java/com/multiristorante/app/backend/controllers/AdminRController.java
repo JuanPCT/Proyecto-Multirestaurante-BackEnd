@@ -51,8 +51,11 @@ public class AdminRController {
 
             AdminR adminRReturn = AdminRCurrent.get();
 
-
             adminRReturn.setNombre(adminR.getNombre());
+            adminRReturn.setApellido(adminR.getApellido());
+            adminRReturn.setTelefono(adminR.getTelefono());
+            adminRReturn.setEmail(adminR.getEmail());
+            adminRReturn.setPassword(adminR.getPassword());
 
 
             adminRRepository.save(adminRReturn);

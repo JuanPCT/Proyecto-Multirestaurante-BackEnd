@@ -61,6 +61,13 @@ public class RestauranteController {
 			
 			
 			restauranteReturn.setNombre(restaurante.getNombre());
+			restauranteReturn.setDireccion(restaurante.getDireccion());
+			restauranteReturn.setTelefono(restaurante.getTelefono());
+			restauranteReturn.setEmail(restaurante.getEmail());
+			restauranteReturn.setPassword(restaurante.getPassword());
+			restauranteReturn.setImagen(restaurante.getImagen());
+			restauranteReturn.setEstado(restaurante.getEstado());
+			restauranteReturn.setUrl_video(restaurante.getUrl_video());
 			
 			
 			restauranteRepository.save(restauranteReturn);

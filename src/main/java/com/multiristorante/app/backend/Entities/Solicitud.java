@@ -3,7 +3,6 @@ package com.multiristorante.app.backend.Entities;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.Date;
 
 @Entity
@@ -16,7 +15,7 @@ public class Solicitud {
     @JoinColumn(name = "documentoA")
     private AdminR documento;
     private String descripcion;
-    private Blob imagen;
-    private boolean estado;
+    private String imagen;
+    private Boolean estado;
     private Date fecha;
 }
