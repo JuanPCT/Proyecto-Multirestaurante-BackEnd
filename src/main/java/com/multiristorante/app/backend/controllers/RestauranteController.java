@@ -1,21 +1,16 @@
 package com.multiristorante.app.backend.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import com.multiristorante.app.backend.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.multiristorante.app.backend.Entities.Restaurante;
 import com.multiristorante.app.backend.repository.RestauranteRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -25,7 +20,14 @@ public class RestauranteController {
     @Autowired
     RestauranteRepository restauranteRepository;
 
-    @GetMapping("/all")
+	private final FileService fileService;
+
+	@Autowired
+	public RestauranteController(FileService fileService) {
+		this.fileService = fileService;
+	}
+
+	@GetMapping("/all")
     public List<Restaurante> getRestauranteAll(){
         return restauranteRepository.findAll();
     }
@@ -44,9 +46,11 @@ public class RestauranteController {
 	}
 	
 	@PostMapping
-	public Restaurante postRestaurantes(@RequestBody Restaurante Restaurante) {
-		restauranteRepository.save(Restaurante);
-		return Restaurante;
+	public Restaurante postRestaurantes( Restaurante restaurante,@RequestParam("file") MultipartFile file) throws IOException {
+		restaurante.setImagen(file.getOriginalFilename());
+		fileService.storeFile(file);
+		restauranteRepository.save(restaurante);
+		return restaurante;
 	}
 	
 	
@@ -61,6 +65,13 @@ public class RestauranteController {
 			
 			
 			restauranteReturn.setNombre(restaurante.getNombre());
+			restauranteReturn.setDireccion(restaurante.getDireccion());
+			restauranteReturn.setTelefono(restaurante.getTelefono());
+			restauranteReturn.setEmail(restaurante.getEmail());
+			restauranteReturn.setPassword(restaurante.getPassword());
+			restauranteReturn.setImagen(restaurante.getImagen());
+			restauranteReturn.setEstado(restaurante.getEstado());
+			restauranteReturn.setUrl_video(restaurante.getUrl_video());
 			
 			
 			restauranteRepository.save(restauranteReturn);

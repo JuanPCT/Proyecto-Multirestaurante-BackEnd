@@ -52,7 +52,7 @@ public class FacturaController {
             Factura facturaReturn = facturaCurrent.get();
 
 
-            facturaReturn.setDocumento(factura.getDocumento());
+            facturaReturn.setFecha(factura.getFecha());
 
 
             facturaRepository.save(facturaReturn);
