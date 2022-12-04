@@ -1,7 +1,6 @@
 package com.multiristorante.app.backend.controllers;
 
 import com.multiristorante.app.backend.Entities.Factura;
-import com.multiristorante.app.backend.Entities.Usuario;
 import com.multiristorante.app.backend.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

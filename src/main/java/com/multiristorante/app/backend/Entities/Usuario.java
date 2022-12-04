@@ -2,24 +2,50 @@ package com.multiristorante.app.backend.Entities;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Date;
 
-@Entity
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
 @Data
-@Table(name = "usuario")
-public class Usuario {
+@Entity(name = "usuario")
+@Table(indexes = { @Index(columnList = "userId", name = "index_userid", unique = true),
+@Index(columnList = "email", name = "index_email", unique = true)})
+public class Usuario implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(nullable = false)
+    public String userId;
+
+    @Column(nullable = false)
     private int documento;
+
+    @Column(nullable = false, length = 50)
     private String nombre;
+
+    @Column(nullable = false, length = 50)
     private String apellido;
+
+    @Column(nullable = false, length = 10)
     private String telefono;
+
+    @Column(nullable = false, length = 255)
     private String email;
-    private String password;
-    private Boolean estado;
-    private Date fecha_nacimiento;
-    private Date fecha_creacion;
-    @ManyToOne
-    @JoinColumn(name="Rol_id")
-    private Rol id;
+
+    @Column(nullable = false)
+    private String encryptedPassword;
+
+    @Column(nullable = false)   
+    private String fecha_nacimiento;
+    
+    
+    // @ManyToOne
+    // @JoinColumn(name="Rol_id")
+    // private Rol rol_id;
 }

@@ -1,7 +1,6 @@
 package com.multiristorante.app.backend.controllers;
 
 import com.multiristorante.app.backend.Entities.Comentarios;
-import com.multiristorante.app.backend.Entities.Rol;
 import com.multiristorante.app.backend.repository.ComentariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
