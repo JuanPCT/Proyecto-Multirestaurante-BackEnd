@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.multiristorante.app.backend.Models.Responses.ErrorMessage;
-import com.multiristorante.app.backend.Models.Responses.ValidationErrors;
+import com.multiristorante.app.backend.Models.responses.ErrorMessage;
+import com.multiristorante.app.backend.Models.responses.ValidationErrors;
 
 @ControllerAdvice
 public class AppExceptionHandler {

@@ -68,9 +68,7 @@ public class RestauranteController {
 			restauranteReturn.setDireccion(restaurante.getDireccion());
 			restauranteReturn.setTelefono(restaurante.getTelefono());
 			restauranteReturn.setEmail(restaurante.getEmail());
-			restauranteReturn.setPassword(restaurante.getPassword());
 			restauranteReturn.setImagen(restaurante.getImagen());
-			restauranteReturn.setEstado(restaurante.getEstado());
 			restauranteReturn.setUrl_video(restaurante.getUrl_video());
 			
 			
@@ -83,21 +81,21 @@ public class RestauranteController {
 
 	}
 	
-	@DeleteMapping("/{id}")
-	public Restaurante deleteRestaurantesbyId(@PathVariable Integer id) {
+	// @DeleteMapping("/{id}")
+	// public Restaurante deleteRestaurantesbyId(@PathVariable Integer id) {
 		
-		Optional<Restaurante> restaurante = restauranteRepository.findById(id);
+	// 	Optional<Restaurante> restaurante = restauranteRepository.findById(id);
 		
-		if (restaurante.isPresent()) {
+	// 	if (restaurante.isPresent()) {
 			
-			Restaurante restauranteReturn = restaurante.get();
+	// 		Restaurante restauranteReturn = restaurante.get();
 			
-			restauranteRepository.deleteById(id);
+	// 		restauranteRepository.deleteById(id);
 			
-			return restauranteReturn;
-		}
+	// 		return restauranteReturn;
+	// 	}
 		
-		return null;
+	// 	return null;
 
-	}
+	// }
 }

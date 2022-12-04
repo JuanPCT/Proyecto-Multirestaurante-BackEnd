@@ -1,5 +1,7 @@
 package com.multiristorante.app.backend.Entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -13,7 +15,11 @@ public class Menu {
     private int Menu_id;
 
     private String tipo;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
+    private List<Producto> productos;
+
     @ManyToOne
-    @JoinColumn(name = "id_restaurante")
-    private Restaurante id;
+    @JoinColumn(name = "id_restaurante",insertable = false,updatable = false)
+    private Restaurante restaurante;
 }

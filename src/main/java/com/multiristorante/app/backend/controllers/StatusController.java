@@ -5,11 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StatusController {
-
-	@GetMapping("/status")
-	public String status() {
-		return "Ok";
-	}
 	
 	@GetMapping("/error")
 	public String error() {

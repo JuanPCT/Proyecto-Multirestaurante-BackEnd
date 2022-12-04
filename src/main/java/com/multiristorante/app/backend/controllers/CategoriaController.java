@@ -42,44 +42,44 @@ public class CategoriaController {
     }
 
 
-    @PutMapping("/{id}")
-    public Categoria putProductosbyId(@PathVariable Integer id, @RequestBody Categoria categoria) {
+    // @PutMapping("/{id}")
+    // public Categoria putProductosbyId(@PathVariable Integer id, @RequestBody Categoria categoria) {
 
-        Optional<Categoria> categoriaCurrent = categoriaRepository.findById(id);
+    //     Optional<Categoria> categoriaCurrent = categoriaRepository.findById(id);
 
-        if (categoriaCurrent.isPresent()) {
+    //     if (categoriaCurrent.isPresent()) {
 
-            Categoria categoriaReturn = categoriaCurrent.get();
-
-
-            categoriaReturn.setNombre(categoria.getNombre());
+    //         Categoria categoriaReturn = categoriaCurrent.get();
 
 
+    //         categoriaReturn.setNombre(categoria.getNombre());
 
-            categoriaRepository.save(categoriaReturn);
 
-            return categoriaReturn;
-        }
 
-        return null;
+    //         categoriaRepository.save(categoriaReturn);
 
-    }
+    //         return categoriaReturn;
+    //     }
 
-    @DeleteMapping("/{id}")
-    public Categoria deleteProductobyId(@PathVariable Integer id) {
+    //     return null;
 
-        Optional<Categoria> categoria = categoriaRepository.findById(id);
+    // }
 
-        if (categoria.isPresent()) {
+    // @DeleteMapping("/{id}")
+    // public Categoria deleteProductobyId(@PathVariable Integer id) {
 
-            Categoria categoriaReturn = categoria.get();
+    //     Optional<Categoria> categoria = categoriaRepository.findById(id);
 
-            categoriaRepository.deleteById(id);
+    //     if (categoria.isPresent()) {
 
-            return categoriaReturn;
-        }
+    //         Categoria categoriaReturn = categoria.get();
 
-        return null;
+    //         categoriaRepository.deleteById(id);
 
-    }
+    //         return categoriaReturn;
+    //     }
+
+    //     return null;
+
+    // }
 }

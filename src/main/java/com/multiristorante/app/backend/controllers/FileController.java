@@ -23,11 +23,6 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    @GetMapping({"/status1"})
-    public String status(){
-        return "ok";
-    }
-
     @PostMapping(value = "/api/files")
     @ResponseStatus(HttpStatus.OK)
     public void handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
@@ -57,7 +52,6 @@ public class FileController {
                 file, headers, HttpStatus.OK);
 
         return response;
-
 
     }
 
