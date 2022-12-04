@@ -1,13 +1,16 @@
 package com.multiristorante.app.backend.controllers;
 
-import com.multiristorante.app.backend.Entities.Rol;
-import com.multiristorante.app.backend.Entities.Usuario;
-import com.multiristorante.app.backend.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import com.multiristorante.app.backend.Models.Requests.UsuarioDetailsRequestModel;
+import com.multiristorante.app.backend.Models.Responses.UsuarioRest;
+import com.multiristorante.app.backend.Shared.dto.UsuarioDto;
+import com.multiristorante.app.backend.service.UsuarioService;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -15,77 +18,35 @@ import java.util.Optional;
 public class UsuarioController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioService;
 
-    @GetMapping("/all")
-    public List<Usuario> getUsuarioAll(){
-        return usuarioRepository.findAll();
-    }
+    @GetMapping(produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public UsuarioRest getUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    @GetMapping("/{id}")
-    public Usuario getUsuariosbyId(@PathVariable Integer documento) {
+        String email = authentication.getPrincipal().toString();
 
-        Optional<Usuario> Usuario = usuarioRepository.findById(documento);
+        UsuarioDto usuarioDto =  usuarioService.getUser(email);
 
-        if (Usuario.isPresent()) {
-            return Usuario.get();
-        }
+        UsuarioRest userToReturn = new UsuarioRest();
 
-        return null;
+        BeanUtils.copyProperties(usuarioDto, userToReturn);
 
+        return userToReturn;
     }
 
     @PostMapping
-    public Usuario postUsuarios(@RequestBody Usuario usuario) {
-        usuarioRepository.save(usuario);
-        return usuario;
-    }
+    public UsuarioRest postUsuarios(@RequestBody UsuarioDetailsRequestModel usuario) {
 
+        UsuarioRest usuarioToReturn = new UsuarioRest();
+        UsuarioDto usuarioDto = new UsuarioDto();
 
-    @PutMapping("/{id}")
-    public Usuario putUsuariobyId(@PathVariable Integer id, @RequestBody Usuario usuario) {
+        BeanUtils.copyProperties(usuario, usuarioDto);
 
-        Optional<Usuario> usuarioCurrent = usuarioRepository.findById(id);
+        UsuarioDto createdUser = usuarioService.createUsuario(usuarioDto);
 
-        if (usuarioCurrent.isPresent()) {
+        BeanUtils.copyProperties(createdUser, usuarioToReturn);
 
-            Usuario usuarioReturn = usuarioCurrent.get();
-
-
-            usuarioReturn.setNombre(usuario.getNombre());
-            usuarioReturn.setApellido(usuario.getApellido());
-            usuarioReturn.setTelefono(usuario.getTelefono());
-            usuarioReturn.setEmail(usuario.getEmail());
-            usuarioReturn.setPassword(usuario.getPassword());
-            usuarioReturn.setEstado(usuario.getEstado());
-            usuarioReturn.setFecha_nacimiento(usuario.getFecha_nacimiento());
-            usuarioReturn.setFecha_creacion(usuario.getFecha_creacion());
-
-
-            usuarioRepository.save(usuarioReturn);
-
-            return usuarioReturn;
-        }
-
-        return null;
-
-    }
-
-    @DeleteMapping("/{id}")
-    public Usuario deleteUsuariosbyId(@PathVariable Integer id) {
-
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-
-        if (usuario.isPresent()) {
-
-            Usuario usuarioReturn = usuario.get();
-
-            usuarioRepository.deleteById(id);
-
-            return usuarioReturn;
-        }
-
-        return null;
-
+        return usuarioToReturn;
     }
 }

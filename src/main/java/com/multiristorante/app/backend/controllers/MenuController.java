@@ -1,7 +1,6 @@
 package com.multiristorante.app.backend.controllers;
 
 import com.multiristorante.app.backend.Entities.Menu;
-import com.multiristorante.app.backend.Entities.Rol;
 import com.multiristorante.app.backend.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
