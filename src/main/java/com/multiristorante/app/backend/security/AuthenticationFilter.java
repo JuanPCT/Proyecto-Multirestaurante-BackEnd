@@ -18,8 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.multiristorante.app.backend.SpringApplicationContext;
-import com.multiristorante.app.backend.Entities.Usuario;
-import com.multiristorante.app.backend.Models.Requests.UsuarioLoginRequestModel;
+import com.multiristorante.app.backend.Models.requests.UsuarioLoginRequestModel;
 import com.multiristorante.app.backend.Shared.dto.UsuarioDto;
 import com.multiristorante.app.backend.service.UsuarioServiceInterface;
 

@@ -4,18 +4,27 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
 @Data
-@Table(name = "comentarios")
+@Entity(name = "comentarios")
+@Table
 public class Comentarios {
+
     @Id
-    private int id;
+    @GeneratedValue
+    private int comentario_id;
+
     @ManyToOne
-    @JoinColumn(name = "id_restaurante")
-    private Restaurante id_restaurante;
+    @JoinColumn(name = "restaurante_id")
+    private Restaurante restaurante;
+
     @ManyToOne
-    @JoinColumn(name = "documentoU")
-    private Usuario documento;
+    @JoinColumn(name = "user_id")
+    private Usuario user;
+
+    @Column(nullable = false)
     private String descripcion;
+
+    @Column(nullable = false)
     private double calificacion;
+
 }

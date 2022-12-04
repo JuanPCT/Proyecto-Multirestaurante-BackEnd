@@ -24,12 +24,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-        .antMatchers(HttpMethod.POST,"/usuarios")
-        .permitAll().anyRequest().authenticated()
-        .and().addFilter(getAuthenticationFilter())
-        .addFilter(new AuthorizationFilter(authenticationManager()))
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .antMatchers(HttpMethod.GET,"/restaurantes/**").permitAll()
+        .antMatchers(HttpMethod.GET,"/productos/**").permitAll()
+        .antMatchers(HttpMethod.GET,"/menus/**").permitAll()
+        .antMatchers(HttpMethod.GET,"/files/**").permitAll()
+        .antMatchers(HttpMethod.GET,"/api/files").permitAll()
+        .antMatchers(HttpMethod.GET,"/comentarios/**").permitAll()
+        .antMatchers(HttpMethod.POST,"/usuarios").permitAll().anyRequest().authenticated()
+        .and().addFilter(getAuthenticationFilter()).addFilter(new AuthorizationFilter(authenticationManager()))
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override

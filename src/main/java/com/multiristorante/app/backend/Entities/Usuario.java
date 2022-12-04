@@ -5,6 +5,8 @@ import lombok.Data;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -44,8 +46,6 @@ public class Usuario implements Serializable{
     @Column(nullable = false)   
     private String fecha_nacimiento;
     
-    
-    // @ManyToOne
-    // @JoinColumn(name="Rol_id")
-    // private Rol rol_id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Comentarios> comentarios = new ArrayList<>();
 }
