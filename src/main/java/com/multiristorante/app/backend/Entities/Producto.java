@@ -11,6 +11,7 @@ import lombok.Data;
 public class Producto {
     
     @Id
+    @GeneratedValue
     private Integer producto_id;
 	private String nombre;
     private String imagen;
