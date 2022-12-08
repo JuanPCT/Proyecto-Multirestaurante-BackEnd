@@ -1,4 +1,4 @@
-INSERT IGNORE INTO categoria (id, nombre) VALUES
+INSERT IGNORE INTO categoria (categoria_id, nombre) VALUES
     (1, "Hamburguesas"),
     (2, "Pizza"),
     (3, "Pollo"),

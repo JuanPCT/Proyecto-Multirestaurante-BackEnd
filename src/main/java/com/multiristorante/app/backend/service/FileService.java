@@ -15,7 +15,7 @@ import java.nio.file.StandardCopyOption;
 @Component
 public class FileService {
 
-    private static final String FILE_DIRECTORY = "src//main//resources//static//images/";
+    private static final String FILE_DIRECTORY = "/home/user/web/images";
 
     private final Path rootLocation = Paths.get(FILE_DIRECTORY);
 
@@ -27,7 +27,7 @@ public class FileService {
 
     public Resource loadFile(String filename) {
         try {
-            Path file = rootLocation.resolve("C:\\Users\\ANDRES\\Desktop\\MultiRestaurante\\Proyecto-Mulrestaurante-BackEnd\\src\\main\\resources\\static\\images\\"+ "/" + filename);
+            Path file = rootLocation.resolve(FILE_DIRECTORY+ "/" + filename);
             System.out.println(file.toString());
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
