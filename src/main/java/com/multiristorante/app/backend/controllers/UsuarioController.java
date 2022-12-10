@@ -3,6 +3,7 @@ package com.multiristorante.app.backend.controllers;
 import com.multiristorante.app.backend.Models.requests.UsuarioDetailsRequestModel;
 import com.multiristorante.app.backend.Models.responses.UsuarioRest;
 import com.multiristorante.app.backend.Shared.dto.UsuarioDto;
+import com.multiristorante.app.backend.service.EmailService;
 import com.multiristorante.app.backend.service.UsuarioService;
 
 import org.springframework.beans.BeanUtils;
@@ -19,6 +20,12 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
+    @Autowired
+    private final EmailService emailService;
+
+    public UsuarioController(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @GetMapping(produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public UsuarioRest getUser(){
@@ -45,8 +52,14 @@ public class UsuarioController {
 
         UsuarioDto createdUser = usuarioService.createUsuario(usuarioDto);
 
+        this.emailService.sendListEmail(usuario.getEmail());
+        
         BeanUtils.copyProperties(createdUser, usuarioToReturn);
 
         return usuarioToReturn;
+    }
+    @GetMapping("/email")
+    public void sendEmail(String email){
+        this.emailService.sendListEmail(email);
     }
 }
