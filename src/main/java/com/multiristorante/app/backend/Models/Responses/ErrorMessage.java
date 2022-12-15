@@ -1,4 +1,4 @@
-package com.multiristorante.app.backend.Models.responses;
+package com.multiristorante.app.backend.models.responses;
 
 import java.util.Date;
 

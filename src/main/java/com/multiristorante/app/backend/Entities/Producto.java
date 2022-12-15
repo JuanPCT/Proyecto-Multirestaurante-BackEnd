@@ -18,6 +18,6 @@ public class Producto {
     private double precio;
 
     @ManyToOne
-    @JoinColumn(name = "Menu_id",insertable = false,updatable = false)
+    @JoinColumn(name = "menu_id",insertable = false,updatable = false)
     private Menu menu;
 }
