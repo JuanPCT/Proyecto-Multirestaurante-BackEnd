@@ -1,4 +1,4 @@
-package com.multiristorante.app.backend.Models.requests;
+package com.multiristorante.app.backend.models.requests;
 
 import lombok.Data;
 
