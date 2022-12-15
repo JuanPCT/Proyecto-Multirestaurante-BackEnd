@@ -2,15 +2,13 @@ package com.multiristorante.app.backend.Entities;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Data
+@Table(name = "categoria")
 public class Categoria {
 
 	@Id
