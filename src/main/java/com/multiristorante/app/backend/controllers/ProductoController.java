@@ -3,6 +3,7 @@ package com.multiristorante.app.backend.controllers;
 import com.multiristorante.app.backend.Entities.Producto;
 import com.multiristorante.app.backend.repository.ProductoRepository;
 import com.multiristorante.app.backend.service.FileService;
+import com.multiristorante.app.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,9 @@ public class ProductoController {
     ProductoRepository productoRepository;
 
     private final FileService fileService;
+
+    @Autowired
+    private StorageService service;
 
     @Autowired
     public ProductoController(FileService fileService) {
@@ -47,7 +51,7 @@ public class ProductoController {
     @PostMapping
     public Producto postProductos(Producto producto,@RequestParam("file") MultipartFile file) throws IOException {
         producto.setImagen(file.getOriginalFilename());
-        fileService.storeFile(file);
+        service.uploadFile(file);
         productoRepository.save(producto);
         return producto;
     }

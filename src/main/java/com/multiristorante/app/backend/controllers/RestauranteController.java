@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.multiristorante.app.backend.service.FileService;
+import com.multiristorante.app.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,8 @@ public class RestauranteController {
     
     @Autowired
     RestauranteRepository restauranteRepository;
+	@Autowired
+	private StorageService service;
 
 	private final FileService fileService;
 
@@ -48,7 +51,7 @@ public class RestauranteController {
 	@PostMapping
 	public Restaurante postRestaurantes( Restaurante restaurante,@RequestParam("file") MultipartFile file) throws IOException {
 		restaurante.setImagen(file.getOriginalFilename());
-		fileService.storeFile(file);
+		service.uploadFile(file);
 		restauranteRepository.save(restaurante);
 		return restaurante;
 	}
