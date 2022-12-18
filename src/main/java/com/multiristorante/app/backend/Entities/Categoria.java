@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
@@ -16,6 +18,7 @@ public class Categoria {
 	@Column(nullable = false)
 	private String nombre;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="categoria_id")
 	private List<Restaurante> restaurante;
 	
