@@ -1,4 +1,4 @@
-package com.multiristorante.app.backend.Models.responses;
+package com.multiristorante.app.backend.models.responses;
 
 import lombok.Data;
 
@@ -6,7 +6,6 @@ import lombok.Data;
 public class UsuarioRest {
     
     private String userId;
-    private int documento;
     private String nombre;
     private String telefono;
     private String email;

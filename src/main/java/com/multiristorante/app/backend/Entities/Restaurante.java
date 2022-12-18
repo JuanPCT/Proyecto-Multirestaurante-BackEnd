@@ -26,6 +26,8 @@ public class Restaurante {
     private String email;
     @Column(nullable = false)
     private String imagen;
+    @Column(nullable = false)
+    private String descripcion;
     @Column
     private String url_video;
 

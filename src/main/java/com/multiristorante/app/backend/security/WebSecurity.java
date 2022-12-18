@@ -23,7 +23,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.cors().and().csrf().disable().authorizeRequests()        
+        .antMatchers(HttpMethod.POST,"/restaurantes").permitAll()
         .antMatchers(HttpMethod.GET,"/restaurantes/**").permitAll()
         .antMatchers(HttpMethod.GET,"/productos/**").permitAll()
         .antMatchers(HttpMethod.GET,"/productos").permitAll()

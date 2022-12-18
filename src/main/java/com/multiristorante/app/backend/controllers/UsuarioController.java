@@ -1,7 +1,7 @@
 package com.multiristorante.app.backend.controllers;
 
-import com.multiristorante.app.backend.Models.requests.UsuarioDetailsRequestModel;
-import com.multiristorante.app.backend.Models.responses.UsuarioRest;
+import com.multiristorante.app.backend.models.requests.UsuarioDetailsRequestModel;
+import com.multiristorante.app.backend.models.responses.UsuarioRest;
 import com.multiristorante.app.backend.Shared.dto.UsuarioDto;
 import com.multiristorante.app.backend.service.EmailService;
 import com.multiristorante.app.backend.service.UsuarioService;
