@@ -2,8 +2,6 @@ package com.multiristorante.app.backend.Entities;
 
 import lombok.Data;
 
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +23,6 @@ public class Usuario implements Serializable{
     @Column(nullable = false)
     public String userId;
 
-    @Column(nullable = false)
-    private int documento;
-
     @Column(nullable = false, length = 50)
     private String nombre;
 
@@ -48,4 +43,7 @@ public class Usuario implements Serializable{
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comentarios> comentarios = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Carrito> carritos = new ArrayList<>();
 }
