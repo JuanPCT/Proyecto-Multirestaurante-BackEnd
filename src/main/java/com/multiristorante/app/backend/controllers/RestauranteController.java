@@ -58,7 +58,7 @@ public class RestauranteController {
 	
 	
 	@PutMapping("/{id}")
-	public Restaurante putRestaurantesbyId(@PathVariable Integer id, @RequestBody Restaurante restaurante) {
+	public Restaurante putRestaurantesbyId(@PathVariable Integer id, @RequestBody Restaurante restaurante,@RequestParam("file") MultipartFile file) {
 		
 		Optional<Restaurante> restauranteCurrent = restauranteRepository.findById(id);
 		
@@ -71,7 +71,10 @@ public class RestauranteController {
 			restauranteReturn.setDireccion(restaurante.getDireccion());
 			restauranteReturn.setTelefono(restaurante.getTelefono());
 			restauranteReturn.setEmail(restaurante.getEmail());
-			restauranteReturn.setImagen(restaurante.getImagen());
+			if (!file.isEmpty()) {
+                restauranteReturn.setImagen(file.getOriginalFilename());
+                service.uploadFile(file);
+            }
 			restauranteReturn.setUrl_video(restaurante.getUrl_video());
 			
 			

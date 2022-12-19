@@ -31,7 +31,7 @@ public class ProductoController {
     }
 
     @GetMapping("/all")
-    public List<Producto> getProductoAll(){
+    public List<Producto> getProductoAll() {
         return productoRepository.findAll();
     }
 
@@ -49,16 +49,16 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto postProductos(Producto producto,@RequestParam("file") MultipartFile file) throws IOException {
+    public Producto postProductos(Producto producto, @RequestParam("file") MultipartFile file) throws IOException {
         producto.setImagen(file.getOriginalFilename());
         service.uploadFile(file);
         productoRepository.save(producto);
         return producto;
     }
 
-
     @PutMapping("/{id}")
-    public Producto putProductosbyId(@PathVariable Integer id, @RequestBody Producto producto) {
+    public Producto putProductosbyId(@PathVariable Integer id, @RequestBody Producto producto,
+            @RequestParam("file") MultipartFile file) {
 
         Optional<Producto> productoCurrent = productoRepository.findById(id);
 
@@ -66,12 +66,14 @@ public class ProductoController {
 
             Producto productoReturn = productoCurrent.get();
 
-
             productoReturn.setNombre(producto.getNombre());
             productoReturn.setNombre(producto.getNombre());
             productoReturn.setPrecio(producto.getPrecio());
-            productoReturn.setImagen(producto.getImagen());
 
+            if (!file.isEmpty()) {
+                productoReturn.setImagen(file.getOriginalFilename());
+                service.uploadFile(file);
+            }
 
             productoRepository.save(productoReturn);
 

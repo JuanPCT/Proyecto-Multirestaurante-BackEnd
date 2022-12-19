@@ -3,8 +3,11 @@ package com.multiristorante.app.backend.controllers;
 
 import com.multiristorante.app.backend.Entities.Categoria;
 import com.multiristorante.app.backend.repository.CategoriaRepository;
+import com.multiristorante.app.backend.service.StorageService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +18,8 @@ import java.util.Optional;
 public class CategoriaController {
     @Autowired
     CategoriaRepository categoriaRepository;
+    @Autowired
+    StorageService storageService;
 
     @GetMapping("/all")
     public List<Categoria> getProductoAll(){
@@ -35,34 +40,11 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public Categoria postProductos(@RequestBody Categoria categoria) {
-
+    public Categoria postProductos(Categoria categoria ,@RequestParam("file") MultipartFile file) {
+        categoria.setImagen(file.getOriginalFilename());
+        storageService.uploadFile(file);
         categoriaRepository.save(categoria);
         return categoria;
-    }
-
-
-    @PutMapping("/{id}")
-    public Categoria putProductosbyId(@PathVariable Integer id, @RequestBody Categoria categoria) {
-
-        Optional<Categoria> categoriaCurrent = categoriaRepository.findById(id);
-
-        if (categoriaCurrent.isPresent()) {
-
-            Categoria categoriaReturn = categoriaCurrent.get();
-
-
-            categoriaReturn.setNombre(categoria.getNombre());
-
-
-
-            categoriaRepository.save(categoriaReturn);
-
-            return categoriaReturn;
-        }
-
-        return null;
-
     }
 
     @DeleteMapping("/{id}")
@@ -71,11 +53,8 @@ public class CategoriaController {
         Optional<Categoria> categoria = categoriaRepository.findById(id);
 
         if (categoria.isPresent()) {
-
             Categoria categoriaReturn = categoria.get();
-
             categoriaRepository.deleteById(id);
-
             return categoriaReturn;
         }
 

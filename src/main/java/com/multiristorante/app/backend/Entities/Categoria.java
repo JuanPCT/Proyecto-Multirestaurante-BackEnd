@@ -14,9 +14,11 @@ import java.util.List;
 public class Categoria {
 
 	@Id
+	@GeneratedValue
 	private Integer categoria_id;
 	@Column(nullable = false)
 	private String nombre;
+	private String imagen;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="categoria_id")

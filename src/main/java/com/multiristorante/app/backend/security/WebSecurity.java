@@ -23,8 +23,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()        
-        .antMatchers(HttpMethod.POST,"/restaurantes","/categorias","/productos","/menus","/comentarios").permitAll()
+        http.cors().and().csrf().disable().authorizeRequests()
+        .antMatchers(HttpMethod.POST,"/usuarios/login","/restaurantes","/categorias","/productos","/menus","/comentarios").permitAll()
         .antMatchers(HttpMethod.GET,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/files/**","/api/files","/comentarios/**").permitAll()
         .antMatchers(HttpMethod.PUT,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/files/**","/api/files","/comentarios/**").permitAll()
         .antMatchers(HttpMethod.DELETE,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/files/**","/api/files","/comentarios/**").permitAll()
