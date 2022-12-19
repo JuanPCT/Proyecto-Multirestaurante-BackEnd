@@ -16,21 +16,12 @@ public class MenuController {
     @Autowired
     MenuRepository menuRepository;
 
-    @GetMapping("/all")
-    public List<Menu> getMenulAll(){
-        return menuRepository.findAll();
-    }
-
     @GetMapping("/{id}")
-    public Menu getMenusbyId(@PathVariable Integer id) {
+    public List<Menu> getMenusbyId(@PathVariable Integer id) {
 
-        Optional<Menu> menu = menuRepository.findById(id);
+        List<Menu> menu = menuRepository.findByRestaurante(id);
 
-        if (menu.isPresent()) {
-            return menu.get();
-        }
-
-        return null;
+        return menu;
 
     }
 
