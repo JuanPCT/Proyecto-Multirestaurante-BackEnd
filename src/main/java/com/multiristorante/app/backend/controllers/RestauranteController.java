@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import com.multiristorante.app.backend.service.FileService;
 import com.multiristorante.app.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +21,6 @@ public class RestauranteController {
     RestauranteRepository restauranteRepository;
 	@Autowired
 	private StorageService service;
-
-	private final FileService fileService;
-
-	@Autowired
-	public RestauranteController(FileService fileService) {
-		this.fileService = fileService;
-	}
 
 	@GetMapping("/all")
     public List<Restaurante> getRestauranteAll(){

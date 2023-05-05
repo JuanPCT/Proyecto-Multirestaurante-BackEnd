@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,10 +19,12 @@ public class Carrito {
     @GeneratedValue
     private int id_carrito;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "producto_id",insertable = false,updatable = false)
     private Producto producto;
 
+    @NotNull
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",insertable = false,updatable = false)

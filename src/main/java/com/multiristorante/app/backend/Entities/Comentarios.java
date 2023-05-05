@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @Entity(name = "comentarios")
 @Table
@@ -13,6 +15,7 @@ public class Comentarios {
     @GeneratedValue
     private int comentario_id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
     private Restaurante restaurante;

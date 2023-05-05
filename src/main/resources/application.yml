@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      access-key:
-      secret-key:
+      access-key: AKIAU2ZC5LHJ4FWUYPGG
+      secret-key: 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
     region:
       static: us-east-1
     stack:
@@ -10,7 +10,7 @@ cloud:
 
 application:
   bucket:
-    name: elasticbeanstalk-us-east-1-785490149956
+    name: multirestaurante-images
 
 
 spring:
