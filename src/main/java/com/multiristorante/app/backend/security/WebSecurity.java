@@ -23,16 +23,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()        
-        .antMatchers(HttpMethod.POST,"/restaurantes").permitAll()
-        .antMatchers(HttpMethod.GET,"/restaurantes/**").permitAll()
-        .antMatchers(HttpMethod.GET,"/productos/**").permitAll()
-        .antMatchers(HttpMethod.GET,"/productos").permitAll()
-        .antMatchers(HttpMethod.GET,"/menus/**").permitAll()
-        .antMatchers(HttpMethod.GET,"/files/**").permitAll()
-        .antMatchers(HttpMethod.GET,"/api/files").permitAll()
-        .antMatchers(HttpMethod.GET,"/comentarios/**").permitAll()
-        .antMatchers(HttpMethod.POST,"/usuarios", "/carrito").permitAll().anyRequest().authenticated()
+        http.cors().and().csrf().disable().authorizeRequests()
+        .antMatchers(HttpMethod.POST,"/usuarios/login","/restaurantes","/categorias","/productos","/menus","/comentarios").permitAll()
+        .antMatchers(HttpMethod.GET,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/comentarios/**","/carrito/**").permitAll()
+        .antMatchers(HttpMethod.PUT,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/comentarios/**").permitAll()
+        .antMatchers(HttpMethod.DELETE,"/restaurantes/**","/categorias/**","/productos/**","/menus/**","/comentarios/**").permitAll()
+        .antMatchers(HttpMethod.POST,"/usuarios","/carrito").permitAll().anyRequest().authenticated()
         .and().addFilter(getAuthenticationFilter()).addFilter(new AuthorizationFilter(authenticationManager()))
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

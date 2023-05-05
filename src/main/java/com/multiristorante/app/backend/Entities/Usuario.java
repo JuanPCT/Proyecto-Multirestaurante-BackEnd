@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @Entity(name = "usuario")
 @Table(indexes = { @Index(columnList = "userId", name = "index_userid", unique = true),
@@ -41,9 +43,6 @@ public class Usuario implements Serializable{
     @Column(nullable = false)   
     private String fecha_nacimiento;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Comentarios> comentarios = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Carrito> carritos = new ArrayList<>();
 }

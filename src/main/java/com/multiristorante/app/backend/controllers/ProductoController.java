@@ -2,7 +2,6 @@ package com.multiristorante.app.backend.controllers;
 
 import com.multiristorante.app.backend.Entities.Producto;
 import com.multiristorante.app.backend.repository.ProductoRepository;
-import com.multiristorante.app.backend.service.FileService;
 import com.multiristorante.app.backend.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,18 +19,11 @@ public class ProductoController {
     @Autowired
     ProductoRepository productoRepository;
 
-    private final FileService fileService;
-
     @Autowired
     private StorageService service;
 
-    @Autowired
-    public ProductoController(FileService fileService) {
-        this.fileService = fileService;
-    }
-
     @GetMapping("/all")
-    public List<Producto> getProductoAll(){
+    public List<Producto> getProductoAll() {
         return productoRepository.findAll();
     }
 
@@ -49,16 +41,16 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Producto postProductos(Producto producto,@RequestParam("file") MultipartFile file) throws IOException {
+    public Producto postProductos(Producto producto, @RequestParam("file") MultipartFile file) throws IOException {
         producto.setImagen(file.getOriginalFilename());
         service.uploadFile(file);
         productoRepository.save(producto);
         return producto;
     }
 
-
     @PutMapping("/{id}")
-    public Producto putProductosbyId(@PathVariable Integer id, @RequestBody Producto producto) {
+    public Producto putProductosbyId(@PathVariable Integer id, @RequestBody Producto producto,
+            @RequestParam("file") MultipartFile file) {
 
         Optional<Producto> productoCurrent = productoRepository.findById(id);
 
@@ -66,12 +58,13 @@ public class ProductoController {
 
             Producto productoReturn = productoCurrent.get();
 
-
-            productoReturn.setNombre(producto.getNombre());
             productoReturn.setNombre(producto.getNombre());
             productoReturn.setPrecio(producto.getPrecio());
-            productoReturn.setImagen(producto.getImagen());
 
+            if (!file.isEmpty()) {
+                productoReturn.setImagen(file.getOriginalFilename());
+                service.uploadFile(file);
+            }
 
             productoRepository.save(productoReturn);
 

@@ -21,7 +21,8 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
     @Autowired
-    private final EmailService emailService;
+    EmailService emailService;
+    
 
     public UsuarioController(EmailService emailService) {
         this.emailService = emailService;

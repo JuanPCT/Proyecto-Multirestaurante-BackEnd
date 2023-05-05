@@ -38,4 +38,7 @@ public class Restaurante {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private List<Comentarios> comentarios = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    private List<Menu> menus = new ArrayList<>();
+
 }
